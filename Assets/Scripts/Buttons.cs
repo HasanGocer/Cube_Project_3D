@@ -10,6 +10,9 @@ public class Buttons : MonoSingleton<Buttons>
 
     [SerializeField] private GameObject _money;
 
+    [SerializeField] private GameObject _startPanel;
+    [SerializeField] private Button _startButton;
+
     [SerializeField] private Button _settingButton;
     [SerializeField] private GameObject _settingGame;
 
@@ -17,17 +20,24 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
 
-    public GameObject winPanel,failPanel;
+    public GameObject winPanel, failPanel;
+    [SerializeField] private Button _winButton, _failButton;
 
-    public Text moneyText;
+    public Text moneyText, timerText, levelText;
 
     private void Start()
     {
         ButtonPlacement();
+        SettingPlacement();
+        levelText.text = GameManager.Instance.level.ToString();
+    }
+
+    private void SettingPlacement()
+    {
         if (GameManager.Instance.sound == 1)
         {
             _soundButton.gameObject.GetComponent<Image>().sprite = _green;
-            SoundSystem.Instance.MainMusicPlay();
+            // SoundSystem.Instance.MainMusicPlay();
         }
         else
         {
@@ -43,31 +53,48 @@ public class Buttons : MonoSingleton<Buttons>
             _vibrationButton.gameObject.GetComponent<Image>().sprite = _red;
         }
     }
-
     private void ButtonPlacement()
     {
+        _startButton.onClick.AddListener(StartButton);
         _settingButton.onClick.AddListener(SettingButton);
         _settingBackButton.onClick.AddListener(SettingBackButton);
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
+        _winButton.onClick.AddListener(WinButton);
+        _failButton.onClick.AddListener(FailButton);
     }
 
 
-
+    private void StartButton()
+    {
+        _startPanel.SetActive(false);
+        GameManager.Instance.isStart = true;
+        RandomSystem.Instance.StartRandomSystem();
+        StartCoroutine(TimerSystem.Instance.TimerStart());
+    }
+    private void WinButton()
+    {
+        GameManager.Instance.level++;
+        GameManager.Instance.SetLevel();
+        LevelSystem.Instance.NewLevelCheckField();
+        SceneManager.LoadScene(0);
+    }
+    private void FailButton()
+    {
+        SceneManager.LoadScene(0);
+    }
     private void SettingButton()
     {
         _settingGame.SetActive(true);
         _settingButton.gameObject.SetActive(false);
         _money.SetActive(false);
     }
-
     private void SettingBackButton()
     {
         _settingGame.SetActive(false);
         _settingButton.gameObject.SetActive(true);
         _money.SetActive(true);
     }
-
     private void SoundButton()
     {
         if (GameManager.Instance.sound == 1)
@@ -87,7 +114,6 @@ public class Buttons : MonoSingleton<Buttons>
             GameManager.Instance.SetSound();
         }
     }
-
     private void VibrationButton()
     {
         if (GameManager.Instance.vibration == 1)

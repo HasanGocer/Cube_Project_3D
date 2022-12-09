@@ -9,57 +9,32 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int cubeLineCount, cubeColumnCount, cubeObjectTypeCount;
+        public int objectCount, ObjectTypeCount;
     }
 
     public Field field;
     public Field standart;
     public Field factor;
     public Field constant;
-    public Field maxFactor;
-    public Field max;
-    public Field fieldPrice;
 
-    private void Start()
+    public void AwakeID()
     {
-        /*field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
-        fieldPrice.runnerSpeed = fieldPrice.runnerSpeed * factor.runnerSpeed;
-
-        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
-        fieldPrice.runnerCount = fieldPrice.runnerCount * factor.runnerCount;
-
-        if (field.runnerCount > max.runnerCount)
-        {
-            field.runnerCount = max.runnerCount;
-        }
-
-
-        if (field.runnerSpeed < max.runnerSpeed)
-        {
-            field.runnerSpeed = max.runnerSpeed;
-        }*/
-
-
+        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+        field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
     }
 
-    /*public void RunnerCount()
+    public void SetObjectCount()
     {
-        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
-
-        if (field.runnerCount > max.runnerCount)
-        {
-            field.runnerCount = max.runnerCount;
-        }
+        factor.objectCount++;
+        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
     }
 
-
-    public void RunnerSpeed()
+    public void SetObjectTypeCount()
     {
-        field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
-
-        if (field.runnerSpeed < max.runnerSpeed)
-        {
-            field.runnerSpeed = max.runnerSpeed;
-        }
-    }*/
+        factor.ObjectTypeCount++;
+        field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
 }

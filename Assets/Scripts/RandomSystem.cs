@@ -5,25 +5,29 @@ using UnityEngine;
 public class RandomSystem : MonoSingleton<RandomSystem>
 {
     public List<GameObject> ObjectList = new List<GameObject>();
-    [SerializeField] private int _objectListMaxCount;
+    [SerializeField] private GameObject _objectPosTemplate;
     [SerializeField] private int _OPObjectCount;
-    [SerializeField] private int _maxObjectCount;
-    [SerializeField] private int _xDÝstance, zDÝstance;
+    [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _objectPlacementTime;
 
+    public void StartRandomSystem()
+    {
+        StartCoroutine(ObjectPlacementIenumerator(ItemData.Instance.field.objectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList));
+    }
 
-    public IEnumerator ObjectPlacementIenumerator(int maxCount, int OPObjectCount, int maxObjectCount, int xDÝstance, int zDistance, float objectPlacementTime, List<GameObject> objects)
+    public IEnumerator ObjectPlacementIenumerator(int maxCount, int OPObjectCount, int maxObjectCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
     {
         while (true)
         {
             if (ObjectCountCheck(maxCount, objects))
             {
                 GameObject obj = GetObject(OPObjectCount);
-                AddList(obj, objects);
                 if (objects.Count == 0)
                     ObjectIDPlacement(obj, maxObjectCount, objects, objects.Count);
-                ObjectIDPlacement(obj, maxObjectCount, objects);
-                ObjectPositionPlacement(obj, xDÝstance, zDistance);
+                else
+                    ObjectIDPlacement(obj, maxObjectCount, objects);
+                AddList(obj, objects);
+                ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
                 yield return new WaitForSeconds(objectPlacementTime);
             }
             yield return null;
@@ -62,14 +66,15 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
         if (count != -1)
             objectID.objectID = count;
-        objectID.objectID = Random.Range(1, maxObjectCount);
+        else
+            objectID.objectID = Random.Range(1, maxObjectCount);
         obj.transform.GetChild(objectID.objectID).gameObject.SetActive(true);
         objectID.ListCount = objects.Count - 1;
     }
-    private void ObjectPositionPlacement(GameObject obj, int xDÝstance, int zDistance)
+    private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance)
     {
         int tempX = Random.Range(0, xDÝstance);
         int tempZ = Random.Range(0, zDistance);
-        obj.transform.position = new Vector3(obj.transform.position.x + tempX, obj.transform.position.y, obj.transform.position.z + tempZ);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ);
     }
 }
