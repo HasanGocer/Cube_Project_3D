@@ -17,6 +17,8 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
 
+    public GameObject winPanel,failPanel;
+
     public Text moneyText;
 
     private void Start()
