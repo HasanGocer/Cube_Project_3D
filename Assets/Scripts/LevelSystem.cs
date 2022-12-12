@@ -10,6 +10,7 @@ public class LevelSystem : MonoSingleton<LevelSystem>
     {
         if (GameManager.Instance.level >= _levelMod * ItemData.Instance.factor.objectCount)
         {
+            ItemData.Instance.SetObjectTypeCount();
             ItemData.Instance.SetObjectCount();
             ItemData.Instance.SetObjectTypeCount();
         }

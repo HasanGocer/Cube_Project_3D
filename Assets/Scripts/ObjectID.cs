@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ObjectID : MonoBehaviour
 {
-    public int objectID, ListCount;
+    public int objectID, materialCount, ListCount;
 }

@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int objectCount, ObjectTypeCount;
+        public int objectCount, ObjectTypeCount, taskObjectCount;
     }
 
     public Field field;
@@ -21,6 +21,7 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
+        field.taskObjectCount = standart.taskObjectCount + (factor.taskObjectCount * constant.taskObjectCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
@@ -35,6 +36,13 @@ public class ItemData : MonoSingleton<ItemData>
     {
         factor.ObjectTypeCount++;
         field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
+
+    public void SetObjectTaskCount()
+    {
+        factor.taskObjectCount++;
+        field.taskObjectCount = standart.taskObjectCount + (factor.taskObjectCount * constant.taskObjectCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 }
