@@ -70,7 +70,7 @@ public class Buttons : MonoSingleton<Buttons>
         _startPanel.SetActive(false);
         GameManager.Instance.isStart = true;
         TaskSystem.Instance.TaskStart();
-        StartCoroutine(RandomSystem.Instance.StartRandomSystem());
+        RandomSystem.Instance.StartRandomSystem();
         StartCoroutine(TimerSystem.Instance.TimerStart());
     }
     private void WinButton()

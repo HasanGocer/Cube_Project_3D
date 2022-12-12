@@ -10,28 +10,25 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _objectPlacementTime;
 
-    public IEnumerator StartRandomSystem()
+    public void StartRandomSystem()
     {
-        StartCoroutine(TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList));
-        yield return new WaitForSeconds(ItemData.Instance.field.taskObjectCount * _objectPlacementTime);
-        StartCoroutine(ObjectPlacementIenumerator(ItemData.Instance.field.objectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList));
+        TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
+        ObjectPlacementIenumerator(ItemData.Instance.field.objectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
     }
 
-    private IEnumerator TaskObjectPlacementIenumurator(int maxCount, int OPObjectCount, int maxObjectCount, int maxObjectMaterialCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
+    private void TaskObjectPlacementIenumurator(int maxCount, int OPObjectCount, int maxObjectCount, int maxObjectMaterialCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
     {
         for (int i = 0; i < maxCount; i++)
         {
             GameObject obj = GetObject(OPObjectCount);
-            ObjectIDPlacement(obj, maxObjectCount, maxObjectMaterialCount, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
+            ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
             AddList(obj, objects);
             ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
-            yield return new WaitForSeconds(objectPlacementTime);
 
         }
-        yield return null;
     }
 
-    private IEnumerator ObjectPlacementIenumerator(int maxCount, int OPObjectCount, int maxObjectCount, int maxObjectMaterialCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
+    private void ObjectPlacementIenumerator(int maxCount, int OPObjectCount, int maxObjectCount, int maxObjectMaterialCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
     {
         for (int i = 0; i < maxCount; i++)
         {
@@ -39,9 +36,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             AddList(obj, objects);
             ObjectIDPlacement(obj, maxObjectCount, maxObjectMaterialCount, objects);
             ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
-            yield return new WaitForSeconds(objectPlacementTime);
         }
-        yield return null;
     }
 
     public void ObjectPoolAdd(GameObject obj, List<GameObject> objects)
@@ -70,23 +65,47 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         objects.Add(obj);
     }
-    //taskda arananla aynýsý çýkmasýn
-    private void ObjectIDPlacement(GameObject obj, int maxObjectCount, int maxObjectMaterialCount, List<GameObject> objects, int ID = -1, int MaterialCount = -1)
+    private void ObjectTaskIDPlacement(GameObject obj, List<GameObject> objects, int ID, int MaterialCount)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
-        if (ID != -1)
-            objectID.objectID = ID;
-        else
-            objectID.objectID = Random.Range(0, maxObjectCount);
-
-        if (MaterialCount != -1)
-            objectID.materialCount = MaterialCount;
-        else
-            objectID.materialCount = Random.Range(0, maxObjectMaterialCount);
+        objectID.objectID = ID;
+        objectID.materialCount = MaterialCount;
 
         obj.transform.GetChild(objectID.objectID).GetComponent<MeshRenderer>().material = MateraiSystem.Instance.emptyMaterial;
         obj.transform.GetChild(objectID.objectID).gameObject.SetActive(true);
         objectID.ListCount = objects.Count - 1;
+    }
+    private void ObjectIDPlacement(GameObject obj, int maxObjectCount, int maxObjectMaterialCount, List<GameObject> objects)
+    {
+        ObjectID objectID = obj.GetComponent<ObjectID>();
+
+        int ID, materialCount;
+        do
+        {
+            ID = Random.Range(0, maxObjectCount);
+            materialCount = Random.Range(0, maxObjectMaterialCount);
+        }
+        while (CheckObjectID(ID, materialCount));
+        objectID.objectID = ID;
+        objectID.materialCount = materialCount;
+        obj.transform.GetChild(objectID.objectID).GetComponent<MeshRenderer>().material = MateraiSystem.Instance.emptyMaterial;
+        obj.transform.GetChild(objectID.objectID).gameObject.SetActive(true);
+        objectID.ListCount = objects.Count - 1;
+    }
+    private bool CheckObjectID(int ID, int materialCount)
+    {
+        TaskSystem taskSystem = TaskSystem.Instance;
+        bool isTrue = false;
+        for (int i1 = 0; i1 < taskSystem.ObjectTypeList.Count; i1++)
+        {
+            for (int i2 = 0; i2 < taskSystem.ObjectMaterialList.Count; i2++)
+            {
+                if (ID == taskSystem.ObjectTypeList[i1] && materialCount == taskSystem.ObjectMaterialList[i2])
+                    isTrue = true;
+            }
+        }
+
+        return isTrue;
     }
     private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance)
     {
