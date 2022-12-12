@@ -36,8 +36,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         for (int i = 0; i < maxCount; i++)
         {
             GameObject obj = GetObject(OPObjectCount);
-            ObjectIDPlacement(obj, maxObjectCount, maxObjectMaterialCount, objects);
             AddList(obj, objects);
+            ObjectIDPlacement(obj, maxObjectCount, maxObjectMaterialCount, objects);
             ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
             yield return new WaitForSeconds(objectPlacementTime);
         }
@@ -70,6 +70,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         objects.Add(obj);
     }
+    //taskda arananla aynýsý çýkmasýn
     private void ObjectIDPlacement(GameObject obj, int maxObjectCount, int maxObjectMaterialCount, List<GameObject> objects, int ID = -1, int MaterialCount = -1)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
@@ -83,7 +84,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         else
             objectID.materialCount = Random.Range(0, maxObjectMaterialCount);
 
-        //obj.GetComponent<MeshRenderer>().material = MateraiSystem.Instance.emptyMaterial;
+        obj.transform.GetChild(objectID.objectID).GetComponent<MeshRenderer>().material = MateraiSystem.Instance.emptyMaterial;
         obj.transform.GetChild(objectID.objectID).gameObject.SetActive(true);
         objectID.ListCount = objects.Count - 1;
     }

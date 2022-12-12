@@ -8,18 +8,33 @@ public class ObjectTouch : MonoBehaviour
     {
         if (other.CompareTag("Hide"))
         {
-            if (other.GetComponent<ObjectID>().objectID == 0)
-                WinFunc();
-            else
+            ObjectID objectID = other.GetComponent<ObjectID>();
+            TaskSystem taskSystem = TaskSystem.Instance;
+            bool trueObject = false;
+
+            for (int i = 0; i < TaskSystem.Instance.ObjectMaterialList.Count; i++)
+            {
+                if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i])
+                {
+                    taskSystem.ObjectBoolList[i] = true;
+                    trueObject = true;
+                    WinFunc();
+                }
+            }
+
+            if (!trueObject)
                 WrongObjectFunc(other.gameObject);
         }
     }
 
     private void WinFunc()
     {
-        Buttons.Instance.winPanel.SetActive(true);
-        GameManager.Instance.isStart = false;
-        //obje patlat
+        if (TaskSystem.Instance.CheckFinish())
+        {
+            Buttons.Instance.winPanel.SetActive(true);
+            GameManager.Instance.isStart = false;
+            //obje patlat
+        }
     }
     private void WrongObjectFunc(GameObject obj)
     {
