@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectTouch : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnMouseDown()
     {
-        if (other.CompareTag("Hide"))
+        if (transform.GetChild(transform.childCount - 1).GetComponent<CubeSeen>().seen)
         {
-            ObjectID objectID = other.GetComponent<ObjectID>();
+            print(1);
+            ObjectID objectID = GetComponent<ObjectID>();
             TaskSystem taskSystem = TaskSystem.Instance;
             bool trueObject = false;
 
@@ -19,19 +21,22 @@ public class ObjectTouch : MonoBehaviour
                     ItemDown(i);
                     trueObject = true;
                     WinFunc();
+                    WrongObjectFunc(this.gameObject);
                 }
             }
 
             if (!trueObject)
-                WrongObjectFunc(other.gameObject);
+                WrongObjectFunc(this.gameObject);
         }
     }
+
 
     private void ItemDown(int taskCount)
     {
         TaskSystem taskSystem = TaskSystem.Instance;
 
         taskSystem.ObjectCountList[taskCount]--;
+        taskSystem.templateImagePos[taskCount].gameObject.GetComponentInChildren<Text>().text = taskSystem.ObjectCountList[taskCount].ToString();
         if (taskSystem.ObjectCountList[taskCount] == 0)
             taskSystem.ObjectBoolList[taskCount] = true;
     }
@@ -50,4 +55,5 @@ public class ObjectTouch : MonoBehaviour
         //obje patlat
         RandomSystem.Instance.ObjectPoolAdd(obj, RandomSystem.Instance.ObjectList);
     }
+
 }

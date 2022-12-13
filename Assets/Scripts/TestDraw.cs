@@ -27,7 +27,7 @@ public class TestDraw : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * 4;
         if (Input.touchCount > 0 && GameManager.Instance.isStart)
         {
             touch = Input.GetTouch(0);
@@ -43,7 +43,7 @@ public class TestDraw : MonoBehaviour
                         {
                             touchPlane = true;
                             Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                            transform.position = Vector3.Slerp(this.transform.position, pos, 10f);
+                            transform.position = Vector3.Slerp(this.transform.position, pos, 5f);
                             timer = 0;
                         }
                     }
