@@ -15,8 +15,9 @@ public class ObjectTouch : MonoBehaviour
 
             for (int i = 0; i < TaskSystem.Instance.ObjectMaterialList.Count; i++)
             {
-                if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i])
+                if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i] && GetComponent<BoxCollider>().enabled)
                 {
+                    GetComponent<BoxCollider>().enabled = false;
                     StartCoroutine(AddedObject.Instance.StartSlalom(taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], i, this));
                     trueObject = true;
                 }
@@ -30,6 +31,7 @@ public class ObjectTouch : MonoBehaviour
 
     public void ItemDown(int taskCount)
     {
+        print(1);
         TaskSystem taskSystem = TaskSystem.Instance;
 
         taskSystem.ObjectCountList[taskCount]--;
@@ -40,6 +42,7 @@ public class ObjectTouch : MonoBehaviour
 
     public void WinFunc()
     {
+        print(2);
         if (TaskSystem.Instance.CheckFinish())
         {
             Buttons.Instance.winPanel.SetActive(true);
@@ -49,6 +52,7 @@ public class ObjectTouch : MonoBehaviour
     }
     public void WrongObjectFunc(GameObject obj)
     {
+        print(3);
         //obje patlat
         RandomSystem.Instance.ObjectPoolAdd(obj, RandomSystem.Instance.ObjectList);
     }

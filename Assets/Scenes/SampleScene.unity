@@ -371,11 +371,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyMaterial: {fileID: 2100000, guid: de5ac119771812348a1fa7d5cce41127, type: 2}
   ObjectMateral:
-  - {fileID: 2100000, guid: 4a2add66999da6742821cf9bfff95896, type: 2}
-  - {fileID: 2100000, guid: 51dd23821f004c34d8074f2416a77cdd, type: 2}
-  - {fileID: 2100000, guid: 01d7a3104338a6d45b32871b7de0679a, type: 2}
-  - {fileID: 2100000, guid: 459c7d96001ab4d449c2de475db4b232, type: 2}
-  - {fileID: 2100000, guid: 95c19daf8282a0349810c0fc10328acd, type: 2}
+  - {fileID: 2100000, guid: c22d39590da2fa741b569f9db7396df8, type: 2}
+  - {fileID: 2100000, guid: 391db337f128572458c93c42d483364a, type: 2}
+  - {fileID: 2100000, guid: a6c04ad36fc4724489607feb3b23f555, type: 2}
+  - {fileID: 2100000, guid: a3057ba5160266b4590bab097468b4a5, type: 2}
+  - {fileID: 2100000, guid: 2ea4d3d8c7f4d364f9a09c0375629098, type: 2}
+  - {fileID: 2100000, guid: b30f6ff15175f974bb270d08d7c3a8cf, type: 2}
   objectTemp2D:
   - {fileID: 21300000, guid: 777e7f4ab8517ef479cc6df2d091d95b, type: 3}
   - {fileID: 21300000, guid: 58c4e7a9790839541896ffe129f33770, type: 3}
@@ -789,7 +790,7 @@ MonoBehaviour:
     taskObjectTypeCount: 0
     taskObjectTypeCountCount: 0
   standart:
-    objectCount: 10
+    objectCount: 15
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 2
@@ -1530,7 +1531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TempPos: {fileID: 908971792}
-  _slalomWaitTime: 3
+  _slalomWaitTime: 1
   _OPSpriteCount: 1
   _tempParent: {fileID: 1834135596}
 --- !u!1 &1267796611
@@ -2231,7 +2232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1083054417}
-  distance: {x: 0, y: 10.02, z: -4.52}
+  distance: {x: 0, y: 14, z: -6}
   time: 2
 --- !u!20 &1687258584
 Camera:

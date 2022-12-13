@@ -13,10 +13,6 @@ public class AddedObject : MonoSingleton<AddedObject>
 
     public IEnumerator StartSlalom(int ID, int MaterialCount, int taskCount, ObjectTouch objectTouch)
     {
-        objectTouch.ItemDown(taskCount);
-        objectTouch.WinFunc();
-        objectTouch.WrongObjectFunc(objectTouch.gameObject);
-
         GameObject obj = ObjectPool.Instance.GetPooledObject(_OPSpriteCount);
         obj.transform.SetParent(_tempParent.transform);
         Material mat = new Material(MateraiSystem.Instance.Mat2D.shader);
@@ -24,12 +20,15 @@ public class AddedObject : MonoSingleton<AddedObject>
         ýmage.sprite = MateraiSystem.Instance.objectTemp2D[ID];
         ýmage.material = mat;
         ýmage.material.color = MateraiSystem.Instance.ObjectMateral[MaterialCount].color;
-        Vector2 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        Touch touch = Input.GetTouch(0);
+        Vector2 worldFromMousePos = touch.position / Screen.width;
         obj.transform.position = worldFromMousePos;
         obj.transform.DOMove(_TempPos.transform.position, _slalomWaitTime);
         yield return new WaitForSeconds(_slalomWaitTime);
         ObjectPool.Instance.AddObject(_OPSpriteCount, obj);
-        TaskSystem taskSystem = TaskSystem.Instance;
-        taskSystem.templateImagePos[taskCount].gameObject.GetComponentInChildren<Text>().text = taskSystem.ObjectCountList[taskCount].ToString();
+
+        objectTouch.ItemDown(taskCount);
+        objectTouch.WinFunc();
+        objectTouch.WrongObjectFunc(objectTouch.gameObject);
     }
 }
