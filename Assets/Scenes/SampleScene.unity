@@ -378,12 +378,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2ea4d3d8c7f4d364f9a09c0375629098, type: 2}
   - {fileID: 2100000, guid: b30f6ff15175f974bb270d08d7c3a8cf, type: 2}
   objectTemp2D:
-  - {fileID: 21300000, guid: 777e7f4ab8517ef479cc6df2d091d95b, type: 3}
-  - {fileID: 21300000, guid: 58c4e7a9790839541896ffe129f33770, type: 3}
-  - {fileID: 21300000, guid: 65e1e5ba93d2d29498d6654b5e6b1b22, type: 3}
-  - {fileID: 21300000, guid: 3c227f2aea2bfa34a89985abdef1b410, type: 3}
-  - {fileID: 21300000, guid: c68882406fa8c214ca214236b7d7247a, type: 3}
-  - {fileID: 21300000, guid: f26ad18237634854fb76794396f3535c, type: 3}
+  - {fileID: 21300000, guid: afb86a685ac7ea440ac258742c11c54b, type: 3}
+  - {fileID: 21300000, guid: c8e1113ee3e2ebe4ab6ccb54e922a986, type: 3}
+  - {fileID: 21300000, guid: 7e2c8332e31331b44bfe980f34ec85ad, type: 3}
+  - {fileID: 21300000, guid: a0765ad7bdd77fa418a91b08f33abba4, type: 3}
   Mat2D: {fileID: 2100000, guid: e3e7991a4224c2c42a636e71f4388218, type: 2}
 --- !u!1001 &296138508
 PrefabInstance:
@@ -1515,6 +1513,7 @@ MonoBehaviour:
   taskPanel: {fileID: 1834135596}
   _winButton: {fileID: 7329325577106037575}
   _failButton: {fileID: 7329325577496939307}
+  _tutorialPanel: {fileID: 2073137573}
   moneyText: {fileID: 7329325577457688425}
   timerText: {fileID: 1865531786}
   levelText: {fileID: 7329325578251987246}
@@ -2368,6 +2367,85 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1742629367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742629368}
+  - component: {fileID: 1742629370}
+  - component: {fileID: 1742629369}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1742629368
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742629367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2073137574}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.0000076294, y: -708.67}
+  m_SizeDelta: {x: 937.9393, y: 700.7493}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1742629369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742629367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 391ed10d631ab374fbd87c35c7811afe, type: 3}
+    m_FontSize: 126
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 7
+    m_MaxSize: 139
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Yukar\u0131daki objeleri bul"
+--- !u!222 &1742629370
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742629367}
+  m_CullTransparentMesh: 1
 --- !u!1 &1834135596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2815,6 +2893,51 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &2073137573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073137574}
+  - component: {fileID: 2073137575}
+  m_Layer: 5
+  m_Name: TutorialPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2073137574
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073137573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1742629368}
+  m_Father: {fileID: 7329325577020105121}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2073137575
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073137573}
+  m_CullTransparentMesh: 1
 --- !u!1 &2125153446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4803,6 +4926,7 @@ RectTransform:
   - {fileID: 7329325578050314188}
   - {fileID: 7329325576782696919}
   - {fileID: 1834135597}
+  - {fileID: 2073137574}
   m_Father: {fileID: 1584082345}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4889,7 +5013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7329325577075640354
 RectTransform:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     public GameObject winPanel, failPanel, taskPanel;
     [SerializeField] private Button _winButton, _failButton;
+    [SerializeField] private GameObject _tutorialPanel;
 
     public Text moneyText, timerText, levelText;
 
@@ -55,7 +56,7 @@ public class Buttons : MonoSingleton<Buttons>
     }
     private void ButtonPlacement()
     {
-        _startButton.onClick.AddListener(StartButton);
+        _startButton.onClick.AddListener(() => StartCoroutine(StartButton()));
         _settingButton.onClick.AddListener(SettingButton);
         _settingBackButton.onClick.AddListener(SettingBackButton);
         _soundButton.onClick.AddListener(SoundButton);
@@ -65,8 +66,11 @@ public class Buttons : MonoSingleton<Buttons>
     }
 
 
-    private void StartButton()
+    private IEnumerator StartButton()
     {
+        _tutorialPanel.SetActive(true);
+        yield return new WaitForSeconds(2);
+        _tutorialPanel.SetActive(false);
         taskPanel.SetActive(true);
         _startPanel.SetActive(false);
         GameManager.Instance.isStart = true;
