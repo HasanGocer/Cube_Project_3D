@@ -12,7 +12,7 @@ public class LevelSystem : MonoSingleton<LevelSystem>
         {
             ItemData.Instance.SetObjectTypeCount();
             ItemData.Instance.SetObjectCount();
-            ItemData.Instance.SetObjectTypeCount();
+            ItemData.Instance.SetObjectTaskTypeCount();
         }
     }
 }

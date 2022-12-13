@@ -20,7 +20,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
 
-    public GameObject winPanel, failPanel;
+    public GameObject winPanel, failPanel, taskPanel;
     [SerializeField] private Button _winButton, _failButton;
 
     public Text moneyText, timerText, levelText;
@@ -67,6 +67,7 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void StartButton()
     {
+        taskPanel.SetActive(true);
         _startPanel.SetActive(false);
         GameManager.Instance.isStart = true;
         TaskSystem.Instance.TaskStart();

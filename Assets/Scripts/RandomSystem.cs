@@ -12,7 +12,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
     public void StartRandomSystem()
     {
-        TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
+        TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
         ObjectPlacementIenumerator(ItemData.Instance.field.objectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
     }
 
@@ -20,11 +20,13 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         for (int i = 0; i < maxCount; i++)
         {
-            GameObject obj = GetObject(OPObjectCount);
-            ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
-            AddList(obj, objects);
-            ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
-
+            for (int i1 = 0; i1 < TaskSystem.Instance.ObjectCountList[i]; i1++)
+            {
+                GameObject obj = GetObject(OPObjectCount);
+                ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
+                AddList(obj, objects);
+                ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
+            }
         }
     }
 

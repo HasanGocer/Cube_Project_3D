@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int objectCount, ObjectTypeCount, taskObjectCount;
+        public int objectCount, ObjectTypeCount, taskObjectTypeCount, taskObjectTypeCountCount;
     }
 
     public Field field;
@@ -21,7 +21,8 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
-        field.taskObjectCount = standart.taskObjectCount + (factor.taskObjectCount * constant.taskObjectCount);
+        field.taskObjectTypeCount = standart.taskObjectTypeCount + (factor.taskObjectTypeCount * constant.taskObjectTypeCount);
+        field.taskObjectTypeCountCount = standart.taskObjectTypeCountCount + (factor.taskObjectTypeCountCount * constant.taskObjectTypeCountCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
@@ -39,10 +40,17 @@ public class ItemData : MonoSingleton<ItemData>
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
-    public void SetObjectTaskCount()
+    public void SetObjectTaskTypeCount()
     {
-        factor.taskObjectCount++;
-        field.taskObjectCount = standart.taskObjectCount + (factor.taskObjectCount * constant.taskObjectCount);
+        factor.taskObjectTypeCount++;
+        field.taskObjectTypeCount = standart.taskObjectTypeCount + (factor.taskObjectTypeCount * constant.taskObjectTypeCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
+
+    public void SetObjectTaskTypeCountCount()
+    {
+        factor.taskObjectTypeCountCount++;
+        field.taskObjectTypeCountCount = standart.taskObjectTypeCountCount + (factor.taskObjectTypeCountCount * constant.taskObjectTypeCountCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 }

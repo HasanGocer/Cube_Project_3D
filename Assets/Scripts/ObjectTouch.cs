@@ -16,7 +16,7 @@ public class ObjectTouch : MonoBehaviour
             {
                 if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i])
                 {
-                    taskSystem.ObjectBoolList[i] = true;
+                    ItemDown(i);
                     trueObject = true;
                     WinFunc();
                 }
@@ -25,6 +25,15 @@ public class ObjectTouch : MonoBehaviour
             if (!trueObject)
                 WrongObjectFunc(other.gameObject);
         }
+    }
+
+    private void ItemDown(int taskCount)
+    {
+        TaskSystem taskSystem = TaskSystem.Instance;
+
+        taskSystem.ObjectCountList[taskCount]--;
+        if (taskSystem.ObjectCountList[taskCount] == 0)
+            taskSystem.ObjectBoolList[taskCount] = true;
     }
 
     private void WinFunc()
