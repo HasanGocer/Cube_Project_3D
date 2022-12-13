@@ -9,7 +9,6 @@ public class ObjectTouch : MonoBehaviour
     {
         if (transform.GetChild(transform.childCount - 1).GetComponent<CubeSeen>().seen)
         {
-            print(1);
             ObjectID objectID = GetComponent<ObjectID>();
             TaskSystem taskSystem = TaskSystem.Instance;
             bool trueObject = false;
@@ -18,10 +17,8 @@ public class ObjectTouch : MonoBehaviour
             {
                 if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i])
                 {
-                    ItemDown(i);
+                    StartCoroutine(AddedObject.Instance.StartSlalom(taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], i, this));
                     trueObject = true;
-                    WinFunc();
-                    WrongObjectFunc(this.gameObject);
                 }
             }
 
@@ -31,7 +28,7 @@ public class ObjectTouch : MonoBehaviour
     }
 
 
-    private void ItemDown(int taskCount)
+    public void ItemDown(int taskCount)
     {
         TaskSystem taskSystem = TaskSystem.Instance;
 
@@ -41,7 +38,7 @@ public class ObjectTouch : MonoBehaviour
             taskSystem.ObjectBoolList[taskCount] = true;
     }
 
-    private void WinFunc()
+    public void WinFunc()
     {
         if (TaskSystem.Instance.CheckFinish())
         {
@@ -50,10 +47,11 @@ public class ObjectTouch : MonoBehaviour
             //obje patlat
         }
     }
-    private void WrongObjectFunc(GameObject obj)
+    public void WrongObjectFunc(GameObject obj)
     {
         //obje patlat
         RandomSystem.Instance.ObjectPoolAdd(obj, RandomSystem.Instance.ObjectList);
     }
+
 
 }
