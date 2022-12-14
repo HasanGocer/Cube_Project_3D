@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToPlayer : MonoBehaviour
+public class MoveToPlayer : MonoSingleton<MoveToPlayer>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float waitMoveTime;
+    public GameObject player;
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator GoThePlayer()
     {
-        
+        while (GameManager.Instance.isStart)
+        {
+            yield return new WaitForSeconds(waitMoveTime);
+            for (int i = 0; i < RandomSystem.Instance.ObjectList.Count; i++)
+            {
+                RandomSystem.Instance.ObjectList[i].transform.position = Vector3.Lerp(RandomSystem.Instance.ObjectList[i].transform.position, player.transform.position, 0.01f);
+            }
+        }
+
     }
 }

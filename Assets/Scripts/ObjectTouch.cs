@@ -24,14 +24,13 @@ public class ObjectTouch : MonoBehaviour
             }
 
             if (!trueObject)
-                WrongObjectFunc(this.gameObject);
+                BackTotheMove(MoveToPlayer.Instance.player, this.gameObject);
         }
     }
 
 
     public void ItemDown(int taskCount)
     {
-        print(1);
         TaskSystem taskSystem = TaskSystem.Instance;
 
         taskSystem.ObjectCountList[taskCount]--;
@@ -40,11 +39,36 @@ public class ObjectTouch : MonoBehaviour
             taskSystem.ObjectBoolList[taskCount] = true;
     }
 
+    private void BackTotheMove(GameObject player, GameObject obj)
+    {
+
+        float floatx;
+        if (player.transform.position.x > obj.transform.position.x)
+            floatx = player.transform.position.x + (player.transform.position.x - obj.transform.position.x);
+        else
+            floatx = player.transform.position.x - (player.transform.position.x - obj.transform.position.x);
+
+        float floaty;
+        if (player.transform.position.y > obj.transform.position.y)
+            floaty = player.transform.position.y + (player.transform.position.y - obj.transform.position.y);
+        else
+            floaty = player.transform.position.y - (player.transform.position.y - obj.transform.position.y);
+
+
+        float floatz;
+        if (player.transform.position.z > obj.transform.position.z)
+            floatz = player.transform.position.z + (player.transform.position.z - obj.transform.position.z);
+        else
+            floatz = player.transform.position.z - (player.transform.position.z - obj.transform.position.z);
+
+        obj.transform.position = Vector3.Lerp(obj.transform.position, new Vector3(floatx, floaty, floatz), 1f);
+    }
+
     public void WinFunc()
     {
-        print(2);
         if (TaskSystem.Instance.CheckFinish())
         {
+            RandomSystem.Instance.AllObjectClose();
             Buttons.Instance.winPanel.SetActive(true);
             GameManager.Instance.isStart = false;
             //obje patlat
@@ -52,7 +76,6 @@ public class ObjectTouch : MonoBehaviour
     }
     public void WrongObjectFunc(GameObject obj)
     {
-        print(3);
         //obje patlat
         RandomSystem.Instance.ObjectPoolAdd(obj, RandomSystem.Instance.ObjectList);
     }

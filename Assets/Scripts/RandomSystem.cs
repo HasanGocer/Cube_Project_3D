@@ -52,6 +52,14 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         ObjectPool.Instance.AddObject(_OPObjectCount, obj);
     }
 
+    public void AllObjectClose()
+    {
+        for (int i = 0; i < ObjectList.Count; i++)
+        {
+            ObjectList[i].SetActive(false);
+        }
+    }
+
     private bool ObjectCountCheck(int maxCount, List<GameObject> objects)
     {
         if (objects.Count <= maxCount)

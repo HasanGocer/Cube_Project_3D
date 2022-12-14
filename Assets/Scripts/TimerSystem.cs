@@ -18,6 +18,7 @@ public class TimerSystem : MonoSingleton<TimerSystem>
         {
             Buttons.Instance.failPanel.SetActive(true);
             GameManager.Instance.isStart = false;
+            RandomSystem.Instance.AllObjectClose();
         }
         yield return null;
     }

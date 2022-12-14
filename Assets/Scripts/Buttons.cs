@@ -69,14 +69,15 @@ public class Buttons : MonoSingleton<Buttons>
     private IEnumerator StartButton()
     {
         _tutorialPanel.SetActive(true);
+        _startPanel.SetActive(false);
         yield return new WaitForSeconds(2);
         _tutorialPanel.SetActive(false);
         taskPanel.SetActive(true);
-        _startPanel.SetActive(false);
         GameManager.Instance.isStart = true;
         TaskSystem.Instance.TaskStart();
         RandomSystem.Instance.StartRandomSystem();
         StartCoroutine(TimerSystem.Instance.TimerStart());
+        StartCoroutine(MoveToPlayer.Instance.GoThePlayer());
     }
     private void WinButton()
     {

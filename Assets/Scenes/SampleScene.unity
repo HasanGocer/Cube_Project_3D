@@ -1298,6 +1298,7 @@ GameObject:
   - component: {fileID: 1096256928}
   - component: {fileID: 1096256929}
   - component: {fileID: 1096256930}
+  - component: {fileID: 1096256931}
   m_Layer: 0
   m_Name: RandomManager
   m_TagString: Untagged
@@ -1359,6 +1360,20 @@ MonoBehaviour:
   - {fileID: 486056013}
   - {fileID: 1996713512}
   - {fileID: 189397682}
+--- !u!114 &1096256931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096256927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb0ebd7ecabb3a4f9996e1238a7ad52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitMoveTime: 5
+  player: {fileID: 1083054417}
 --- !u!1 &1145444333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TempPos: {fileID: 908971792}
-  _slalomWaitTime: 1
+  _slalomWaitTime: 0.5
   _OPSpriteCount: 1
   _tempParent: {fileID: 1834135596}
 --- !u!1 &1267796611
@@ -5013,7 +5028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7329325577075640354
 RectTransform:
   m_ObjectHideFlags: 0
