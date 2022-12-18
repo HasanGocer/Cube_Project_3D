@@ -77,7 +77,7 @@ public class Buttons : MonoSingleton<Buttons>
         TaskSystem.Instance.TaskStart();
         RandomSystem.Instance.StartRandomSystem();
         StartCoroutine(TimerSystem.Instance.TimerStart());
-        StartCoroutine(MoveToPlayer.Instance.GoThePlayer());
+        //StartCoroutine(MoveToPlayer.Instance.GoThePlayer());
     }
     private void WinButton()
     {

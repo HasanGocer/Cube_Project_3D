@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomSystem : MonoSingleton<RandomSystem>
 {
     public List<GameObject> ObjectList = new List<GameObject>();
+    [SerializeField] public int[,] ObjectGridInt = new int[5, 7];
     [SerializeField] private GameObject _objectPosTemplate;
     [SerializeField] private int _OPObjectCount;
     [SerializeField] private int _xDÝstance, _zDÝstance;
@@ -12,11 +13,11 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
     public void StartRandomSystem()
     {
-        TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
+        TaskObjectPlacementIenumurator(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, _xDÝstance, _zDÝstance, _objectPosTemplate, ObjectList);
         ObjectPlacementIenumerator(ItemData.Instance.field.objectCount, _OPObjectCount, ItemData.Instance.field.ObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _xDÝstance, _zDÝstance, _objectPlacementTime, _objectPosTemplate, ObjectList);
     }
 
-    private void TaskObjectPlacementIenumurator(int maxCount, int OPObjectCount, int maxObjectCount, int maxObjectMaterialCount, int xDÝstance, int zDistance, float objectPlacementTime, GameObject objectPosTemplate, List<GameObject> objects)
+    private void TaskObjectPlacementIenumurator(int maxCount, int OPObjectCount, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
     {
         for (int i = 0; i < maxCount; i++)
         {
@@ -25,7 +26,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
                 GameObject obj = GetObject(OPObjectCount);
                 ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
                 AddList(obj, objects);
-                ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
+                ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance, 5, 2);
             }
         }
     }
@@ -37,7 +38,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             GameObject obj = GetObject(OPObjectCount);
             AddList(obj, objects);
             ObjectIDPlacement(obj, maxObjectCount, maxObjectMaterialCount, objects);
-            ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
+            ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance, 5, 2);
         }
     }
 
@@ -117,10 +118,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
         return isTrue;
     }
-    private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance)
+    private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance, float factorX, float factorZ)
     {
-        int tempX = Random.Range(0, xDÝstance);
-        int tempZ = Random.Range(0, zDistance);
-        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + factorX / 2, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + factorZ / 2);
     }
 }
