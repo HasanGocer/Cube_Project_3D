@@ -118,8 +118,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
         return isTrue;
     }
-    private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance, float factorX, float factorZ)
+    private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance, float factorX, float factorY)
     {
-        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + factorX / 2, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + factorZ / 2);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + factorX *, objectPosTemplate.transform.position.y + factorY / 2, objectPosTemplate.transform.position.z);
     }
 }
