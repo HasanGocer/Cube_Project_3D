@@ -15,21 +15,21 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     [SerializeField] private GameObject _objectPosTemplate;
     [SerializeField] private int _OPObjectCount;
 
-    public float objectStartHorizontalDistance, cabinetLineDistance, cabinetColumnDistance;
+    public float cabinetLineDistance, cabinetColumnDistance;
     //scale System ile atanacaklar
-    public int cabinetLineCount, cabinetColumnCount;
-    public float scaleHorizontal, scaleVertical;
+    public int cabinetColumnCount = 8;
 
     public void StartCabinetSystem()
     {
-        //TaskObjectPlacement(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount)
+        TaskObjectPlacement(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, ItemData.Instance.field.cabineObjectCount, cabinetColumnCount, _objectPosTemplate, ScaleSystem.Instance.scaleHorizontalDisctance, ScaleSystem.Instance.scaleVerticalDistance, cabinetColumnDistance, cabinetLineDistance, CabinetClass);
+        ObjectPlacement(_OPObjectCount, ItemData.Instance.field.cabineObjectCount, cabinetColumnCount, ItemData.Instance.field.taskObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _objectPosTemplate, ScaleSystem.Instance.scaleHorizontalDisctance, ScaleSystem.Instance.scaleVerticalDistance, cabinetColumnDistance, cabinetLineDistance, CabinetClass);
     }
 
     public void AllObjectClose()
     {
         for (int i1 = 0; i1 < CabinetClass.Count; i1++)
         {
-            for (int i2 = 0; i2 < cabinetLineCount; i2++)
+            for (int i2 = 0; i2 < ItemData.Instance.field.cabineObjectCount; i2++)
             {
                 for (int i3 = 0; i3 < cabinetColumnCount; i3++)
                 {
@@ -38,7 +38,6 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
             }
         }
     }
-
     public void ObjectPoolAdd(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
@@ -54,12 +53,11 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
             GameObject obj = GetObject(OPObjectCount);
             ObjectID objectID = obj.GetComponent<ObjectID>();
 
-
+            ObjectScalePlacement(obj);
             ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
             ObjectPositionPlacement(obj, objectPosTemplate, scaleHorizontal, scaleVertical, objectID.cabinetCount, objectID.columnCount, objectHorizontalDistance, objectVerticalDistance, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance, CabinetClass.Count);
         }
     }
-
     private void ObjectPlacement(int OPObjectCount, int cabinetLineCount, int cabinetColumnCount, int maxObjectCount, int maxObjectMaterialCount, GameObject objectPosTemplate, float scaleHorizontal, float scaleVertical, float objectHorizontalDistance, float objectVerticalDistance, List<Cabinet> CabinetClass)
     {
         for (int i1 = 0; i1 < CabinetClass.Count; i1++)
@@ -73,6 +71,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
                         GameObject obj = GetObject(OPObjectCount);
                         ObjectID objectID = obj.GetComponent<ObjectID>();
 
+                        ObjectScalePlacement(obj);
                         ObjectIDPlacement(obj, objectID, maxObjectCount, maxObjectMaterialCount, CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
                         ObjectPositionPlacement(obj, objectPosTemplate, scaleHorizontal, scaleVertical, objectID.cabinetCount, objectID.columnCount, objectHorizontalDistance, objectVerticalDistance, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance, CabinetClass.Count);
                     }
@@ -84,6 +83,10 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     private GameObject GetObject(int OPObjectCount)
     {
         return ObjectPool.Instance.GetPooledObject(OPObjectCount);
+    }
+    private void ObjectScalePlacement(GameObject obj)
+    {
+        obj.transform.localScale *= ScaleSystem.Instance.scale;
     }
     private void ObjectTaskIDPlacement(GameObject obj, ObjectID objectID, int ID, int MaterialCount, int maxCabinetCount, int maxLineCount, int maxColumnCount, List<Cabinet> cabinet)
     {

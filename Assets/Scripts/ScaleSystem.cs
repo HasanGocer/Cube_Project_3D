@@ -9,6 +9,10 @@ public class ScaleSystem : MonoSingleton<ScaleSystem>
 
     public void startScaleSystem()
     {
-
+        CabinetSystem cabinetSystem = CabinetSystem.Instance;
+        ItemData ýtemData = ItemData.Instance;
+        scale = (cabinetSystem.cabinetLineDistance / ýtemData.field.cabineObjectCount) * (5 / 12);
+        scaleHorizontalDisctance *= scale;
+        scaleVerticalDistance *= scale;
     }
 }
