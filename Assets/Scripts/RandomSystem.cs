@@ -5,11 +5,12 @@ using UnityEngine;
 public class RandomSystem : MonoSingleton<RandomSystem>
 {
     public List<GameObject> ObjectList = new List<GameObject>();
-    [SerializeField] public int[,] ObjectGridInt = new int[5, 7];
     [SerializeField] private GameObject _objectPosTemplate;
     [SerializeField] private int _OPObjectCount;
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _objectPlacementTime;
+
+
 
     public void StartRandomSystem()
     {
@@ -24,8 +25,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             for (int i1 = 0; i1 < TaskSystem.Instance.ObjectCountList[i]; i1++)
             {
                 GameObject obj = GetObject(OPObjectCount);
-                ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
                 AddList(obj, objects);
+                ObjectTaskIDPlacement(obj, objects, TaskSystem.Instance.ObjectTypeList[i], TaskSystem.Instance.ObjectMaterialList[i]);
                 ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance, 5, 2);
             }
         }
@@ -120,6 +121,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     }
     private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int xDÝstance, int zDistance, float factorX, float factorY)
     {
-        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + factorX *, objectPosTemplate.transform.position.y + factorY / 2, objectPosTemplate.transform.position.z);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + factorX, objectPosTemplate.transform.position.y + factorY / 2, objectPosTemplate.transform.position.z);
     }
 }

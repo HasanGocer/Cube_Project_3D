@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class ObjectID : MonoBehaviour
 {
-    public int objectID, materialCount, ListCount;
+    public int objectID, materialCount, cabinetCount, lineCount, columnCount;
+    public float scaleHorizontalDisctance, scaleVerticalDistance;
 }
