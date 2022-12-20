@@ -8,10 +8,11 @@ public class LevelSystem : MonoSingleton<LevelSystem>
 
     public void NewLevelCheckField()
     {
-        if (GameManager.Instance.level >= _levelMod * ItemData.Instance.factor.objectCount)
+        if (GameManager.Instance.level >= _levelMod * ItemData.Instance.factor.taskObjectTypeCount)
         {
+            ItemData.Instance.SetObjectTaskTypeCountCount();
             ItemData.Instance.SetObjectTypeCount();
-            ItemData.Instance.SetObjectCount();
+            ItemData.Instance.SetCabineObjectCount();
             ItemData.Instance.SetObjectTaskTypeCount();
         }
     }

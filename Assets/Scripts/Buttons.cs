@@ -75,9 +75,8 @@ public class Buttons : MonoSingleton<Buttons>
         taskPanel.SetActive(true);
         GameManager.Instance.isStart = true;
         TaskSystem.Instance.TaskStart();
-        RandomSystem.Instance.StartRandomSystem();
+        CabinetSystem.Instance.StartCabinetSystem();
         StartCoroutine(TimerSystem.Instance.TimerStart());
-        //StartCoroutine(MoveToPlayer.Instance.GoThePlayer());
     }
     private void WinButton()
     {

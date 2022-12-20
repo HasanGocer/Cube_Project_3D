@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int objectCount, ObjectTypeCount, taskObjectTypeCount, taskObjectTypeCountCount;
+        public int ObjectTypeCount, taskObjectTypeCount, taskObjectTypeCountCount, cabineObjectCount;
     }
 
     public Field field;
@@ -19,17 +19,10 @@ public class ItemData : MonoSingleton<ItemData>
 
     public void AwakeID()
     {
-        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         field.ObjectTypeCount = standart.ObjectTypeCount + (factor.ObjectTypeCount * constant.ObjectTypeCount);
         field.taskObjectTypeCount = standart.taskObjectTypeCount + (factor.taskObjectTypeCount * constant.taskObjectTypeCount);
         field.taskObjectTypeCountCount = standart.taskObjectTypeCountCount + (factor.taskObjectTypeCountCount * constant.taskObjectTypeCountCount);
-        GameManager.Instance.FactorPlacementWrite(factor);
-    }
-
-    public void SetObjectCount()
-    {
-        factor.objectCount++;
-        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+        field.cabineObjectCount = standart.cabineObjectCount + (factor.cabineObjectCount * constant.cabineObjectCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
@@ -51,6 +44,13 @@ public class ItemData : MonoSingleton<ItemData>
     {
         factor.taskObjectTypeCountCount++;
         field.taskObjectTypeCountCount = standart.taskObjectTypeCountCount + (factor.taskObjectTypeCountCount * constant.taskObjectTypeCountCount);
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
+
+    public void SetCabineObjectCount()
+    {
+        factor.cabineObjectCount++;
+        field.cabineObjectCount = standart.cabineObjectCount + (factor.cabineObjectCount * constant.cabineObjectCount);
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 }

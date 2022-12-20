@@ -783,25 +783,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field:
-    objectCount: 0
     ObjectTypeCount: 0
     taskObjectTypeCount: 0
     taskObjectTypeCountCount: 0
+    cabineObjectCount: 0
   standart:
-    objectCount: 15
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 2
+    cabineObjectCount: 0
   factor:
-    objectCount: 1
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 1
+    cabineObjectCount: 0
   constant:
-    objectCount: 10
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 1
+    cabineObjectCount: 0
 --- !u!114 &579872093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,7 +1200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900336643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 2.62, z: -5.49}
+  m_LocalPosition: {x: -0.27, y: 0.78, z: -5.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2104208002}
@@ -1295,9 +1295,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096256928}
-  - component: {fileID: 1096256929}
   - component: {fileID: 1096256930}
-  - component: {fileID: 1096256931}
+  - component: {fileID: 1096256929}
   m_Layer: 0
   m_Name: RandomManager
   m_TagString: Untagged
@@ -1328,15 +1327,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096256927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c143a2cbcb8005745bb12ef1e9e872eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 075da06eb286ada47adf5200418c0dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectList: []
-  _objectPosTemplate: {fileID: 146412222}
+  _objectPosTemplate: {fileID: 0}
   _OPObjectCount: 0
-  "_xD\u0130stance": 20
-  "_zD\u0130stance": 20
-  _objectPlacementTime: 1
+  objectStartHorizontalDistance: 0
+  cabinetLineDistance: 0
+  cabinetColumnDistance: 0
+  cabinetLineCount: 0
+  cabinetColumnCount: 0
+  scaleHorizontal: 0
+  scaleVertical: 0
 --- !u!114 &1096256930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,20 +1361,6 @@ MonoBehaviour:
   - {fileID: 486056013}
   - {fileID: 1996713512}
   - {fileID: 189397682}
---- !u!114 &1096256931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096256927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb0ebd7ecabb3a4f9996e1238a7ad52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitMoveTime: 5
-  player: {fileID: 0}
 --- !u!1 &1145444333
 GameObject:
   m_ObjectHideFlags: 0

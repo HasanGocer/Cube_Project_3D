@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CabinetSystem : MonoBehaviour
+public class CabinetSystem : MonoSingleton<CabinetSystem>
 {
     public class Cabinet
     {
@@ -11,6 +11,10 @@ public class CabinetSystem : MonoBehaviour
         public float objectStartVerticalDistance;
     }
     public List<Cabinet> CabinetClass = new List<Cabinet>();
+
+    [SerializeField] private GameObject _objectPosTemplate;
+    [SerializeField] private int _OPObjectCount;
+
     public float objectStartHorizontalDistance, cabinetLineDistance, cabinetColumnDistance;
     //scale System ile atanacaklar
     public int cabinetLineCount, cabinetColumnCount;
@@ -19,6 +23,27 @@ public class CabinetSystem : MonoBehaviour
     public void StartCabinetSystem()
     {
         //TaskObjectPlacement(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount)
+    }
+
+    public void AllObjectClose()
+    {
+        for (int i1 = 0; i1 < CabinetClass.Count; i1++)
+        {
+            for (int i2 = 0; i2 < cabinetLineCount; i2++)
+            {
+                for (int i3 = 0; i3 < cabinetColumnCount; i3++)
+                {
+                    CabinetClass[i1].ObjectGridGameObject[i2, i3].SetActive(false);
+                }
+            }
+        }
+    }
+
+    public void ObjectPoolAdd(GameObject obj)
+    {
+        ObjectID objectID = obj.GetComponent<ObjectID>();
+        CabinetClass[objectID.cabinetCount].ObjectGridBool[objectID.lineCount, objectID.columnCount] = false;
+        CabinetClass[objectID.cabinetCount].ObjectGridGameObject[objectID.lineCount, objectID.columnCount].SetActive(false);
     }
 
     private void TaskObjectPlacement(int maxCount, int OPObjectCount, int cabinetLineCount, int cabinetColumnCount, GameObject objectPosTemplate, float scaleHorizontal, float scaleVertical, float objectHorizontalDistance, float objectVerticalDistance, List<Cabinet> CabinetClass)
