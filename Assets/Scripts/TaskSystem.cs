@@ -14,7 +14,7 @@ public class TaskSystem : MonoSingleton<TaskSystem>
 
     public void TaskStart()
     {
-        SelectTaskList(ItemData.Instance.field.taskObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, ItemData.Instance.field.ObjectTypeCount, ItemData.Instance.field.taskObjectTypeCountCount, ObjectMaterialList, ObjectTypeList, ObjectCountList, ObjectBoolList);
+        SelectTaskList(ItemData.Instance.field.taskObjectTypeCountCount, MateraiSystem.Instance.ObjectMateral.Count, ItemData.Instance.field.ObjectTypeCount, ItemData.Instance.field.taskObjectTypeCountCount, ObjectMaterialList, ObjectTypeList, ObjectCountList, ObjectBoolList);
     }
 
     public bool CheckFinish()

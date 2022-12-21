@@ -78,6 +78,7 @@ public class Buttons : MonoSingleton<Buttons>
         ScaleSystem.Instance.startScaleSystem();
         CabinetSystem.Instance.StartCabinetSystem();
         StartCoroutine(TimerSystem.Instance.TimerStart());
+        StartCoroutine(OpenLight.Instance.LightIsThere());
     }
     private void WinButton()
     {

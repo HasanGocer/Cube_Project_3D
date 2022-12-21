@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146412222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 0.5, z: -10}
+  m_LocalPosition: {x: 0.87, y: -4.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1174906925}
@@ -437,6 +437,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 665423900}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &349030887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349030888}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &349030888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349030887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.106, y: -1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &486056010
 GameObject:
@@ -796,12 +826,12 @@ MonoBehaviour:
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 1
-    cabineObjectCount: 0
+    cabineObjectCount: 1
   constant:
     ObjectTypeCount: 1
     taskObjectTypeCount: 1
     taskObjectTypeCountCount: 1
-    cabineObjectCount: 0
+    cabineObjectCount: 1
 --- !u!114 &579872093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1327,7 @@ GameObject:
   - component: {fileID: 1096256928}
   - component: {fileID: 1096256930}
   - component: {fileID: 1096256929}
+  - component: {fileID: 1096256931}
   m_Layer: 0
   m_Name: RandomManager
   m_TagString: Untagged
@@ -1330,15 +1361,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075da06eb286ada47adf5200418c0dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPosTemplate: {fileID: 0}
+  CabinetClass:
+  - objectStartVerticalDistance: 0.12
+  - objectStartVerticalDistance: 0.32
+  - objectStartVerticalDistance: 0
+  _objectPosTemplate: {fileID: 146412222}
   _OPObjectCount: 0
-  objectStartHorizontalDistance: 0
-  cabinetLineDistance: 0
-  cabinetColumnDistance: 0
-  cabinetLineCount: 0
-  cabinetColumnCount: 0
-  scaleHorizontal: 0
-  scaleVertical: 0
+  cabinetEmptyDistanceVertical: 0.19
+  cabinetEmptyDistanceHorizantal: 0.106
+  cabinetLineDistance: 1.3
+  cabinetColumnDistance: 1.88
+  cabinetColumnCount: 8
 --- !u!114 &1096256930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,6 +1394,21 @@ MonoBehaviour:
   - {fileID: 486056013}
   - {fileID: 1996713512}
   - {fileID: 189397682}
+--- !u!114 &1096256931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096256927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c4291466abb8f4986b2964a69ad346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleHorizontalDisctance: 1
+  scaleVerticalDistance: 2
+  scale: 1
 --- !u!1 &1145444333
 GameObject:
   m_ObjectHideFlags: 0
