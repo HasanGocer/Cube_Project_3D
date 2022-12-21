@@ -18,22 +18,29 @@ public class OpenLight : MonoSingleton<OpenLight>
                 touch = Input.GetTouch(0);
                 switch (touch.phase)
                 {
+                    case TouchPhase.Began:
+
+                        break;
+
                     case TouchPhase.Moved:
-                        // moveCollider.enabled = true;
-                        Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 100));
-                        Vector3 direction = worldFromMousePos - Camera.main.transform.position;
+                        //moveCollider.enabled = true;
+                        Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
+                        Vector3 direction = (worldFromMousePos - Camera.main.transform.position);
                         RaycastHit hit;
-                        if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100f))
+                        if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 50f))
                         {
-                            Debug.Log(hit.transform.position);
-                            lightGO.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, lightGO.transform.position.z);
+                            print(hit.transform.name);
+                            GameObject newWayPoint = new GameObject("WayPoint");
+                            newWayPoint.transform.position = new Vector3(hit.point.x, hit.point.y, lightGO.transform.position.z);
+                            lightGO.transform.position = newWayPoint.transform.position;
+                            Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1f);
                         }
                         break;
                     case TouchPhase.Ended:
                         //moveCollider.enabled = false;
                         break;
                 }
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(Time.deltaTime);
             }
             yield return null;
         }
