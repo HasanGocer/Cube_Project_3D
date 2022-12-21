@@ -27,12 +27,12 @@ public class OpenLight : MonoSingleton<OpenLight>
                         Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
                         Vector3 direction = (worldFromMousePos - Camera.main.transform.position);
                         RaycastHit hit;
-                        if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 50f))
+                        if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100))
                         {
                             print(hit.transform.name);
                             GameObject newWayPoint = new GameObject("WayPoint");
-                            newWayPoint.transform.position = new Vector3(hit.point.x, hit.point.y, lightGO.transform.position.z);
-                            lightGO.transform.position = newWayPoint.transform.position;
+                            newWayPoint.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                            lightGO.transform.position = new Vector3(newWayPoint.transform.position.x, newWayPoint.transform.position.y, lightGO.transform.position.z);
                             Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1f);
                         }
                         break;
