@@ -19,8 +19,8 @@ public class OpenLight : MonoSingleton<OpenLight>
                 switch (touch.phase)
                 {
                     case TouchPhase.Moved:
-                        moveCollider.enabled = true;
-                        Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
+                        // moveCollider.enabled = true;
+                        Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 100));
                         Vector3 direction = worldFromMousePos - Camera.main.transform.position;
                         RaycastHit hit;
                         if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100f))
@@ -30,7 +30,7 @@ public class OpenLight : MonoSingleton<OpenLight>
                         }
                         break;
                     case TouchPhase.Ended:
-                        moveCollider.enabled = false;
+                        //moveCollider.enabled = false;
                         break;
                 }
                 yield return new WaitForEndOfFrame();
