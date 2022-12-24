@@ -58,7 +58,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
 
             ObjectScalePlacement(obj);
             ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
-            ObjectPositionPlacement(obj, objectPosTemplate, objectID.cabinetCount + 1, objectID.columnCount, objectID.lineCount, cabinetColumnDistance, cabinetLineDistance, cabineEmptyColumnDistance, cabineEmptyLineDistance, scaleColumn, scaleLine, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance);
+            ObjectPositionPlacement(obj, objectPosTemplate, objectID.cabinetCount, objectID.columnCount, objectID.lineCount, cabinetColumnDistance, cabinetLineDistance, cabineEmptyColumnDistance, cabineEmptyLineDistance, scaleColumn, scaleLine, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance);
         }
     }
     private void ObjectPlacement(int OPObjectCount, int cabinetColumnCount, int cabinetLineCount, int maxObjectCount, int maxObjectMaterialCount, GameObject objectPosTemplate, float scaleColumn, float scaleLine, float cabinetLineDistance, float cabinetColumnDistance, float cabineEmptyColumnDistance, float cabineEmptyLineDistance, List<Cabinet> CabinetClass)
@@ -114,7 +114,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
         cabinet[objectID.cabinetCount].ObjectGridBool[objectID.lineCount, objectID.columnCount] = true;
         cabinet[objectID.cabinetCount].ObjectGridGameObject[objectID.lineCount, objectID.columnCount] = this.gameObject;
     }
-    private void ObjectIDPlacement(GameObject obj, ObjectID objectID, int maxObjectCount, int maxObjectMaterialCount, int cabinetCount-1, int lineCount, int columnCount, List<Cabinet> cabinet)
+    private void ObjectIDPlacement(GameObject obj, ObjectID objectID, int maxObjectCount, int maxObjectMaterialCount, int cabinetCount, int lineCount, int columnCount, List<Cabinet> cabinet)
     {
 
         int ID, materialCount;
