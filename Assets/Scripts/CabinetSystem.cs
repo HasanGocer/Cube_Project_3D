@@ -51,14 +51,18 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     private void TaskObjectPlacement(int maxCount, int OPObjectCount, int cabinetLineCount, int cabinetColumnCount, GameObject objectPosTemplate, float scaleColumn, float scaleLine, float cabinetLineDistance, float cabinetColumnDistance, float cabineEmptyColumnDistance, float cabineEmptyLineDistance, List<Cabinet> CabinetClass)
     {
         TaskSystem taskSystem = TaskSystem.Instance;
-        for (int i = 0; i < maxCount; i++)
+        for (int i1 = 0; i1 < maxCount; i1++)
         {
-            GameObject obj = GetObject(OPObjectCount);
-            ObjectID objectID = obj.GetComponent<ObjectID>();
+            for (int i = 0; i < taskSystem.ObjectCountList[i1]; i++)
+            {
+                GameObject obj = GetObject(OPObjectCount);
+                ObjectID objectID = obj.GetComponent<ObjectID>();
 
-            ObjectScalePlacement(obj);
-            ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
-            ObjectPositionPlacement(obj, objectPosTemplate, objectID.cabinetCount, objectID.columnCount, objectID.lineCount, cabinetColumnDistance, cabinetLineDistance, cabineEmptyColumnDistance, cabineEmptyLineDistance, scaleColumn, scaleLine, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance);
+                ObjectScalePlacement(obj);
+                ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i1], taskSystem.ObjectMaterialList[i1], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
+                ObjectPositionPlacement(obj, objectPosTemplate, objectID.cabinetCount, objectID.columnCount, objectID.lineCount, cabinetColumnDistance, cabinetLineDistance, cabineEmptyColumnDistance, cabineEmptyLineDistance, scaleColumn, scaleLine, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance);
+
+            }
         }
     }
     private void ObjectPlacement(int OPObjectCount, int cabinetColumnCount, int cabinetLineCount, int maxObjectCount, int maxObjectMaterialCount, GameObject objectPosTemplate, float scaleColumn, float scaleLine, float cabinetLineDistance, float cabinetColumnDistance, float cabineEmptyColumnDistance, float cabineEmptyLineDistance, List<Cabinet> CabinetClass)

@@ -65,6 +65,7 @@ public class ObjectTouch : MonoBehaviour
         {
             CabinetSystem.Instance.AllObjectClose();
             Buttons.Instance.winPanel.SetActive(true);
+            StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
             GameManager.Instance.isStart = false;
             //obje patlat
         }

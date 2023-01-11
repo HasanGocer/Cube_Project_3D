@@ -21,7 +21,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _soundButton, _vibrationButton;
 
     public GameObject winPanel, failPanel, taskPanel;
-    [SerializeField] private Button _winButton, _failButton;
+    [SerializeField] private Button _winPrizeButton, _winButton, _failButton;
     [SerializeField] private GameObject _tutorialPanel;
 
     public Text moneyText, timerText, levelText;
@@ -31,6 +31,12 @@ public class Buttons : MonoSingleton<Buttons>
         ButtonPlacement();
         SettingPlacement();
         levelText.text = GameManager.Instance.level.ToString();
+    }
+
+    public IEnumerator NoThanxSetActive()
+    {
+        yield return new WaitForSeconds(2);
+        _winButton.gameObject.SetActive(true);
     }
 
     private void SettingPlacement()
@@ -61,7 +67,8 @@ public class Buttons : MonoSingleton<Buttons>
         _settingBackButton.onClick.AddListener(SettingBackButton);
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
-        _winButton.onClick.AddListener(WinButton);
+        _winButton.onClick.AddListener(() => StartCoroutine(WinButton()));
+        _winPrizeButton.onClick.AddListener(() => StartCoroutine(WinPrizeButton()));
         _failButton.onClick.AddListener(FailButton);
     }
 
@@ -80,11 +87,22 @@ public class Buttons : MonoSingleton<Buttons>
         StartCoroutine(TimerSystem.Instance.TimerStart());
         StartCoroutine(OpenLight.Instance.LightIsThere());
     }
-    private void WinButton()
+    private IEnumerator WinPrizeButton()
     {
         GameManager.Instance.level++;
         GameManager.Instance.SetLevel();
         LevelSystem.Instance.NewLevelCheckField();
+        BarSystem.Instance.BarStopButton(GameManager.Instance.addedMoney);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(0);
+    }
+    private IEnumerator WinButton()
+    {
+        GameManager.Instance.level++;
+        GameManager.Instance.SetLevel();
+        LevelSystem.Instance.NewLevelCheckField();
+        BarSystem.Instance.BarStopButton(0);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(0);
     }
     private void FailButton()
