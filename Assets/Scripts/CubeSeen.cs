@@ -12,7 +12,7 @@ public class CubeSeen : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ObjectID objectID = GetComponentInParent<ObjectID>();
-            transform.parent.GetChild(objectID.objectID).GetComponent<MeshRenderer>().material = MateraiSystem.Instance.ObjectMateral[GetComponentInParent<ObjectID>().materialCount];
+            transform.parent.GetChild(objectID.objectID).GetComponent<MeshRenderer>().material = MateraiSystem.Instance.ObjectMateral[objectID.materialCount];
             seen = true;
         }
     }

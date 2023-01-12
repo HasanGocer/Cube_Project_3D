@@ -29,7 +29,6 @@ public class OpenLight : MonoSingleton<OpenLight>
                         RaycastHit hit;
                         if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100))
                         {
-                            print(hit.transform.position);
                             GameObject newWayPoint = new GameObject("WayPoint");
                             newWayPoint.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
                             lightGO.transform.position = new Vector3(newWayPoint.transform.position.x, newWayPoint.transform.position.y, lightGO.transform.position.z);

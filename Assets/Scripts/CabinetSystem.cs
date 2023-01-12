@@ -32,9 +32,9 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     {
         for (int i1 = 0; i1 < CabinetClass.Count; i1++)
         {
-            for (int i2 = 0; i2 < ItemData.Instance.field.cabineObjectCount; i2++)
+            for (int i2 = 0; i2 < cabinetColumnCount; i2++)
             {
-                for (int i3 = 0; i3 < cabinetColumnCount; i3++)
+                for (int i3 = 0; i3 < ItemData.Instance.field.cabineObjectCount; i3++)
                 {
                     CabinetClass[i1].ObjectGridGameObject[i2, i3].SetActive(false);
                 }
@@ -59,7 +59,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
                 ObjectID objectID = obj.GetComponent<ObjectID>();
 
                 ObjectScalePlacement(obj);
-                ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i1], taskSystem.ObjectMaterialList[i1], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
+                ObjectTaskIDPlacement(obj, objectID, taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], CabinetClass.Count, cabinetLineCount, cabinetColumnCount, CabinetClass);
                 ObjectPositionPlacement(obj, objectPosTemplate, objectID.cabinetCount, objectID.columnCount, objectID.lineCount, cabinetColumnDistance, cabinetLineDistance, cabineEmptyColumnDistance, cabineEmptyLineDistance, scaleColumn, scaleLine, CabinetClass[objectID.cabinetCount].objectStartVerticalDistance);
 
             }

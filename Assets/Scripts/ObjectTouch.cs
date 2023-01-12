@@ -7,15 +7,18 @@ public class ObjectTouch : MonoBehaviour
 {
     private void OnMouseDown()
     {
+        print(1);
         if (transform.GetChild(transform.childCount - 1).GetComponent<CubeSeen>().seen)
         {
             ObjectID objectID = GetComponent<ObjectID>();
             TaskSystem taskSystem = TaskSystem.Instance;
 
+            print(2);
             for (int i = 0; i < TaskSystem.Instance.ObjectMaterialList.Count; i++)
             {
                 if (objectID.objectID == taskSystem.ObjectTypeList[i] && objectID.materialCount == taskSystem.ObjectMaterialList[i] && GetComponent<BoxCollider>().enabled)
                 {
+                    print(3);
                     GetComponent<BoxCollider>().enabled = false;
                     StartCoroutine(AddedObject.Instance.StartSlalom(taskSystem.ObjectTypeList[i], taskSystem.ObjectMaterialList[i], i, this));
                 }
