@@ -136,7 +136,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     }
     private void ObjectPositionPlacement(GameObject obj, GameObject objectPosTemplate, int objectCabineCount, int objectColumnCount, float cabineColumnDistance, float cabineLineDistance, float cabineEmptyColumnDistance, float cabineEmptyLineDistance, float objectColumnDistance, float objectLineDistance, float cabineLineMisDistance)
     {
-        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + (objectCabineCount - 1) * (cabineColumnDistance + cabineEmptyColumnDistance) + (objectColumnCount - 1) * (objectColumnDistance / 5) * 7 + objectColumnDistance / 2, objectPosTemplate.transform.position.y + (objectCabineCount - 1) * (cabineEmptyLineDistance + cabineLineDistance) + cabineLineDistance / 2 + cabineLineMisDistance, objectPosTemplate.transform.position.z);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + (objectCabineCount - 1) * (cabineColumnDistance + cabineEmptyColumnDistance) /*+ (objectColumnCount - 1) * (objectColumnDistance / 5) * 7 + objectColumnDistance / 2*/, objectPosTemplate.transform.position.y + (objectColumnCount - 1) * (cabineEmptyLineDistance + cabineLineDistance) + cabineLineDistance / 2 + cabineLineMisDistance, objectPosTemplate.transform.position.z);
     }
     private bool CheckObjectID(int ID, int materialCount)
     {
