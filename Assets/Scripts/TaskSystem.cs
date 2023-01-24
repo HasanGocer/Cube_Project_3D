@@ -14,7 +14,7 @@ public class TaskSystem : MonoSingleton<TaskSystem>
 
     public void TaskStart()
     {
-        SelectTaskList(ItemData.Instance.field.taskObjectTypeCountCount, MateraiSystem.Instance.ObjectMateral.Count, ItemData.Instance.field.ObjectTypeCount, ItemData.Instance.field.taskObjectTypeCountCount, ObjectMaterialList, ObjectTypeList, ObjectCountList, ObjectBoolList);
+        SelectTaskList(ItemData.Instance.field.taskObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, ItemData.Instance.field.ObjectTypeCount, ItemData.Instance.field.taskObjectTypeCount, ObjectMaterialList, ObjectTypeList, ObjectCountList, ObjectBoolList);
     }
 
     public bool CheckFinish()
@@ -37,7 +37,7 @@ public class TaskSystem : MonoSingleton<TaskSystem>
             ObjectTypeCountList.Add(Random.Range(1, objectCountMaxCount));
             ObjectBoolList.Add(false);
             templateImagePos[i].gameObject.SetActive(true);
-            templateImagePos[i].sprite = MateraiSystem.Instance.objectTemp2D[i];
+            templateImagePos[i].sprite = MateraiSystem.Instance.objectTemp2D[ObjectTypeList[i]];
             Material mat = new Material(MateraiSystem.Instance.Mat2D.shader);
             templateImagePos[i].material = mat;
             templateImagePos[i].material.color = MateraiSystem.Instance.ObjectMateral[ObjectMaterialList[i]].color;

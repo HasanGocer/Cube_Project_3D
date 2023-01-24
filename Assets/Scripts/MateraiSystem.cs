@@ -9,4 +9,5 @@ public class MateraiSystem : MonoSingleton<MateraiSystem>
     public List<Material> ObjectMateral = new List<Material>();
     public List<Sprite> objectTemp2D = new List<Sprite>();
     public Material Mat2D;
+    public Material blur;
 }

@@ -355,7 +355,6 @@ MonoBehaviour:
   objectID: 0
   materialCount: 0
   cabinetCount: 0
-  lineCount: 0
   columnCount: 0
 --- !u!65 &5758835870691265453
 BoxCollider:
