@@ -22,7 +22,7 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     public void StartCabinetSystem()
     {
         ReSizeCabinetClassArray(cabinetColumnCount, CabinetClass);
-        TaskObjectPlacement(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, cabinetColumnCount, ItemData.Instance.field.cabineObjectCount, _objectPosTemplate, ScaleSystem.Instance.scaleHorizontalDisctance, ScaleSystem.Instance.scaleVerticalDistance, cabinetLineDistance, cabinetColumnDistance, cabinetEmptyDistanceHorizantal, cabinetEmptyDistanceVertical, CabinetClass);
+        TaskObjectPlacement(ItemData.Instance.field.taskObjectTypeCount, _OPObjectCount, cabinetColumnCount, cabinetColumnCount, _objectPosTemplate, ScaleSystem.Instance.scaleHorizontalDisctance, ScaleSystem.Instance.scaleVerticalDistance, cabinetLineDistance, cabinetColumnDistance, cabinetEmptyDistanceHorizantal, cabinetEmptyDistanceVertical, CabinetClass);
         ObjectPlacement(_OPObjectCount, cabinetColumnCount, ItemData.Instance.field.taskObjectTypeCount, MateraiSystem.Instance.ObjectMateral.Count, _objectPosTemplate, ScaleSystem.Instance.scaleHorizontalDisctance, ScaleSystem.Instance.scaleVerticalDistance, cabinetLineDistance, cabinetColumnDistance, cabinetEmptyDistanceHorizantal, cabinetEmptyDistanceVertical, CabinetClass);
     }
 
@@ -98,6 +98,8 @@ public class CabinetSystem : MonoSingleton<CabinetSystem>
     {
         do
         {
+            print(maxCabinetCount);
+            print(maxColumnCount);
             objectID.cabinetCount = Random.Range(0, maxCabinetCount);
             objectID.columnCount = Random.Range(0, maxColumnCount);
         }

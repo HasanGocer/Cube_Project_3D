@@ -77,8 +77,9 @@ public class Buttons : MonoSingleton<Buttons>
     {
         _tutorialPanel.SetActive(true);
         _startPanel.SetActive(false);
-        ViewTaskSystem.Instance.viewPanelOn();
+        ViewTaskSystem.Instance.ViewPanelOn();
         TaskSystem.Instance.TaskStart();
+        ViewTaskSystem.Instance.OpenQuestionMark();
         ScaleSystem.Instance.startScaleSystem();
         CabinetSystem.Instance.StartCabinetSystem();
         yield return new WaitForSeconds(6);
