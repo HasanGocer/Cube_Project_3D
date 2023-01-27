@@ -400,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216350771}
   - component: {fileID: 216350772}
+  - component: {fileID: 216350773}
   m_Layer: 0
   m_Name: MaterialManager
   m_TagString: Untagged
@@ -449,6 +450,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a0765ad7bdd77fa418a91b08f33abba4, type: 3}
   Mat2D: {fileID: 2100000, guid: e3e7991a4224c2c42a636e71f4388218, type: 2}
   blur: {fileID: 2100000, guid: df5e0b432ddbd4845952aa533db6846a, type: 2}
+--- !u!114 &216350773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216350770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314b7602931c60a49adee3076314628c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _OPTrueParticalCount: 0
+  _OPWrongParticalCount: 0
+  _trueParticalTime: 0
+  _wrongParticalTime: 0
 --- !u!1 &241378891
 GameObject:
   m_ObjectHideFlags: 0
