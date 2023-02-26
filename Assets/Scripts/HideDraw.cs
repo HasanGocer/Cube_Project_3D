@@ -19,10 +19,13 @@ public class HideDraw : MonoBehaviour
 
     private void OnMouseDown()
     {
-        rb.isKinematic = false;
-        touchStartedOnPlayer = true;
-        touchPlane = true;
-        StartCoroutine(Draw());
+        if (!touchStartedOnPlayer)
+        {
+            rb.isKinematic = false;
+            touchStartedOnPlayer = true;
+            touchPlane = true;
+            StartCoroutine(Draw());
+        }
     }
 
     private IEnumerator Draw()
